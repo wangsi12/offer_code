@@ -1,0 +1,15 @@
+class Solution {
+public:
+    void Mirror(TreeNode *pRoot) {
+        if(pRoot==nullptr)
+            return ;
+        TreeNode *node=pRoot->left;
+        pRoot->left=pRoot->right;
+        pRoot->right=node;
+        if(pRoot->left)
+            Mirror(pRoot->left);
+        if(pRoot->right)
+            Mirror(pRoot->right);
+
+    }
+};
