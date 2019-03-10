@@ -1,0 +1,29 @@
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* pHead) {
+        if(pHead==nullptr)
+            return nullptr;
+        ListNode*p1=pHead;
+        ListNode*p2=nullptr;//用于保存p1点的前一个点，好令p1 能够指向
+        //ListNode*p3=nullptr;
+        while(p1!=nullptr)
+        {
+            ListNode*p3=p1->next;
+            p1->next=p2;
+            p2=p1;
+            p1=p3;
+        }
+
+        return p2;
+
+
+    }
+};
