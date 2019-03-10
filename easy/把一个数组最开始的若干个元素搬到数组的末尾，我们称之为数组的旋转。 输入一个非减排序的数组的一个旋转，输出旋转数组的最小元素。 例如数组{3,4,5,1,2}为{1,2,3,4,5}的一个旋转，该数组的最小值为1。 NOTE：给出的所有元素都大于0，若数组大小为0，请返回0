@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minNumberInRotateArray(vector<int> rotateArray) {
+        if(rotateArray.size()==0)
+            return 0;
+        int lang=rotateArray.size();
+        int now=0;
+        int next=1;
+        for(int i=0;i<lang-1;i++)
+        {
+            if(rotateArray[now+i]>rotateArray[next+i])
+            {
+                return rotateArray[next+i];
+            }
+        }
+        return rotateArray[0];
+        
+    }
+};
