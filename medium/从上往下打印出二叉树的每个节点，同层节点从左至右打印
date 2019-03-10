@@ -1,0 +1,31 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    vector<int> PrintFromTopToBottom(TreeNode* root) {
+        vector<int>result;
+        if(root==nullptr)
+            return result;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            TreeNode*node=q.front();
+             q.pop();
+            if(!node) continue;
+            //continue只能用在循环中,意思是"继续"循环的意思.当程序执行到contnue时,流程会回到循环的头部,continue后面的的语句不会被执行.
+            result.push_back(node->val);
+            q.push(node->left);
+            q.push(node->right);
+        }
+        return result;
+
+    }
+};
