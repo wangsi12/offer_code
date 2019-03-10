@@ -1,0 +1,30 @@
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* Merge(ListNode* p1, ListNode* p2)
+    {
+        if(p1==nullptr)
+            return  p2;
+        else if(p2==nullptr)
+            return  p1;
+        ListNode*node=nullptr;
+        if(p1->val >= p2->val)
+        {
+            node=p2;
+            node->next=Merge(p1,p2->next);
+        }
+        if(p1->val < p2->val)
+        {
+            node=p1;
+            node->next=Merge(p1->next,p2);
+        }
+        return node;
+    }
+};
