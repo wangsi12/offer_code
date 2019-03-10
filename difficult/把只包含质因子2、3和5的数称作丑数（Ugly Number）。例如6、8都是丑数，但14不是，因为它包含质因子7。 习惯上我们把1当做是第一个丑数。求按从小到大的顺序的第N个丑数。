@@ -1,0 +1,65 @@
+class Solution {
+public:
+    int GetUglyNumber_Solution(int index) {
+       /* if(index<=0)
+            return 0;
+        int num=0;
+        int sum=1;
+        while(sum<index)
+        {
+            num++;
+            if(choushu(num))
+                sum++        }
+        return num;
+
+    }
+    bool choushu(int m)
+    {
+        while(m%2==0)
+            m=m/2;
+        while(m%3==0)
+            m=m/3;
+        while(m%5==0)
+            m=m/5;
+       if(m==1)
+           return true;
+       else
+           return false;
+    }*///这段代码写的不好，因为计算时间太长
+        if(index<=0)
+            return 0;
+        int *result=new int [index];
+        result[0]=1;//核心理念就是所有的结果都是由2.3.5组成的每次乘一个，选择最小的乘
+        int next=1;
+        int *result2=result;
+        int *result3=result;
+        int *result5=result;
+        while(next<index)
+        {
+            int min=min1(*result2*2,*result3*3,*result5*5);
+            result[next]=min;
+ 
+            while(*result2*2<=result[next])//result235只是记录当前指向的result的值 确保当前的已经计算过了不会超过result
+                ++result2;
+            while(*result3*3<=result[next])
+                ++result3;
+            while(*result5*5<=result[next])
+                ++result5;
+                   next++;}
+        int sss=result[next-1];
+        delete[]result;
+        return sss;
+        
+    }
+    int min1(int a ,int b,int c)
+    {
+        int s=a;
+        if(a<b)
+            s=a;
+        else if(a>b)
+            s=b;
+        if(s>c)
+            s=c;
+        return s;
+    }
+};
