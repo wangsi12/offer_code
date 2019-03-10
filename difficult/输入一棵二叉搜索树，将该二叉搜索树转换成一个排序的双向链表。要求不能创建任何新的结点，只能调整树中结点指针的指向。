@@ -1,0 +1,38 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree)
+    {
+        if (pRootOfTree == NULL)return NULL;
+        TreeNode * list=nullptr;
+        Convert2( pRootOfTree,list);
+        //TreeNode*head=list;
+        while(list->left!=nullptr)
+        { list=list->left;}
+        return list;
+    }
+    void Convert2(TreeNode* node,TreeNode*&list)
+    {//list记录上一个树节点
+        if (node==nullptr)
+        { return ;}
+        {//TreeNode* pnode=node;
+        if(node->left!=nullptr)
+        { Convert2(node->left,list);}//list已经记录node->left了，因为把left变成双向链表所以失去了联系，只能用list保存
+        node->left=list;
+        if(list!=nullptr)
+        {list->right=node;}
+        list=node;
+            
+       if(node->right!=nullptr)
+       {Convert2(node->right,list);}
+        }
+    }
+};
