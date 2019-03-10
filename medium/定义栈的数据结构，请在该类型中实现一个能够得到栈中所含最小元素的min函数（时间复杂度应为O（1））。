@@ -1,0 +1,34 @@
+class Solution {
+public:
+    //stack<int> stk1;
+    //stack<int> stk2;
+    void push(int value) {
+        stk1.push(value);
+        if(stk2.empty())
+        {stk2.push(value);}
+        else{
+            if(value>stk2.top())
+            {
+                stk2.push(stk2.top());
+            }
+            else
+            {
+                stk2.push(value);
+            }
+        }
+    }
+        
+    void pop() {
+         stk1.pop();
+         stk2.pop();
+    }
+    int top() {
+        return stk1.top();
+    }
+    int min() {
+        return stk2.top();
+    }
+private:
+    stack<int> stk1;//正常得栈
+    stack<int> stk2;//按大小顺序得栈
+};
