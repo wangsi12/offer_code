@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+        vector<int> result;
+        if(input.empty()||k==0||k>input.size())
+            return result;
+        for(int i ;i<input.size();++i)
+        {
+            if(result.size()<k)
+            {result.push_back(input[i]);}
+            else
+            {
+                sort(result.begin() ,result.end());//确保每一次比较result最后一位都是最大的那个。
+                if(input[i]<result[k-1])
+                {
+                   result[k-1]=input[i];
+                }
+            }
+        }
+        sort(result.begin() ,result.end());
+        return result;
+    }
+};
