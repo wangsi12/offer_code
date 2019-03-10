@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        vector<int> result;
+        stack<int>result1;
+        if(head==nullptr)
+            return result;
+        ListNode* p=head;
+        while(p)
+        {
+            result1.push(p->val);
+            p=p->next;
+        }
+        while(!result1.empty())
+        {
+            result.push_back(result1.top());
+            result1.pop();
+        }
+        return result;
+        
+    }
+};
