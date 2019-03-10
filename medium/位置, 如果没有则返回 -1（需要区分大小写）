@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int FirstNotRepeatingChar(string str) {
+        int hashTable[256];//有256个ascii吗0-255
+        int i;
+        for (i=0; i<256; i++) {
+            hashTable[i] = 0;
+        }
+         
+        int length = str.length();
+        for (i=0; i<length; i++) {
+            hashTable[str[i]] += 1;//            hashTable[str[i]] += 1;
+        }
+         
+        for (i=0; i<length; i++) {
+           if(hashTable[str[i]] == 1)
+               return i;
+        }
+         
+        return -1;
+             
+         
+    }
+};
