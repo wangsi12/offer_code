@@ -1,0 +1,29 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public://重点题目
+    vector<int>result1;
+    vector<vector<int> >result;
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+        if(root==nullptr)
+            return  result;
+        result1.push_back(root->val);
+        if((expectNumber-root->val)==0 && root->left==nullptr&& root->right==nullptr)
+        {
+            result.push_back(result1);
+        }
+        FindPath(root->left,(expectNumber-root->val));
+        FindPath(root->right,(expectNumber-root->val));
+        if(!result1.empty())
+            result1.pop_back();//在返回的时候把上一个点剔除出去
+        return result;
+
+    }
+};
