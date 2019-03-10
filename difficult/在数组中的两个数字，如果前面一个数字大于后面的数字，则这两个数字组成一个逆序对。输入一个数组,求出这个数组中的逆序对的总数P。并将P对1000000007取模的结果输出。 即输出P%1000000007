@@ -1,0 +1,48 @@
+class Solution {//只需要记录i>j的时候就好，
+public://归并排序就是把数组中每一个逆序对都矫正过来，所以归并排序得矫正次数就是逆序对得次数
+   int InversePairs(vector<int> data) {
+    if(data.empty())
+        return 0;
+       long long res;
+    vector<int> data_copy;
+       for(auto num:data){
+            data_copy.push_back(num);
+        }
+       
+       int length=data.size();
+       res=versePairs(data,data_copy,0,length-1);
+       return res%1000000007;
+    }
+    long long versePairs(vector<int>& data,vector<int>& data_copy,int begin,int end)
+    {
+        if(begin==end)
+        {data_copy[begin]=data[begin];
+            return 0;}
+        int mid=(end-begin)>>2;
+        long long left=versePairs(data_copy,data,begin,begin+mid);
+        long long right=versePairs(data_copy,data,begin+mid+1,end);
+        int i=begin+mid;
+        int j=end;
+        int k=end;
+        long long count=0;
+        while(i>=begin && j>=begin+mid+1)
+        {
+            if(data[i]>data[j])
+            {
+                data_copy[k--]=data[i--];//把大的拿上去
+                //k--;
+                //i--;
+                count+=j-begin-mid;//因为当前这个比前面的小，j之前的就更比这个数小了。因为把大的那上去了所以受下一轮印象
+            }
+            else{
+                data_copy[k--]=data[j--];//小的就不用计数了
+            }
+        }
+        for(;i>=begin;--i)
+            data_copy[k--]=data[i];
+        for(;j>=begin+mid+1;--j)
+           data_copy[k--]=data[j];
+        return left+right+count;
+        
+    }
+};
