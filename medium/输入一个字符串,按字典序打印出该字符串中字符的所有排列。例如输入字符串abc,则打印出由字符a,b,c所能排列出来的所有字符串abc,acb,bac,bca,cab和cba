@@ -1,0 +1,54 @@
+class Solution {
+public:
+    vector<string> Permutation(string str) {
+        vector<string> res;
+        if(str.size()==0)
+            return res;
+        //helper(str,res,0);
+        return helper(str,res,0);
+    }
+    vector<string> helper(string str,vector<string> res,int begin)//这里的&是什么意思
+    {
+        int len=str.size();
+        if(begin==len)
+        {
+            res.push_back(str);
+            return res ;
+        }
+        for(int i=begin;i<len;++i)
+        {
+            if(i!=begin && str[i]==str[begin])
+                continue;
+            swap(str[i],str[begin]);
+            res=helper(str, res, begin+1);
+        }
+       return res;
+    }
+};
+/*class Solution {//这是用引用传递参数的方法
+public:
+    vector<string> Permutation(string str) {
+        vector<string> res;
+        if(str.size()==0)
+            return res;
+        helper(str,res,0);
+        return res;
+    }
+    void helper(string str,vector<string> res,int begin)//这里的&是什么意思
+    {
+        int len=str.size();
+        if(begin==len)
+        {
+            res.push_back(str);
+            return res ;
+        }
+        for(int i=begin;i<len;++i)
+        {
+            if(i!=begin && str[i]==str[begin])
+                continue;
+            swap(str[i],str[begin]);
+            helper(str, res, begin+1);
+        }
+
+    }
+};*/
