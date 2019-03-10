@@ -1,0 +1,67 @@
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* pHead)
+    {
+        if(pHead==nullptr)
+            return nullptr;
+        clonenode(pHead);
+        clonerandom(pHead);
+        return clone2(pHead);
+    }
+    void clonenode(RandomListNode* pHead)
+    {
+        RandomListNode*node=pHead;
+        while(node)
+        {//RandomListNode *cloud=new RandomListNode(node->label);
+            RandomListNode *cloud=new RandomListNode(node->lable);
+            //cloud->lable=node->lable;
+            cloud->next=node->next;
+            cloud->random=nullptr;
+            node->next=cloud;
+            node=cloud->next;
+        }
+    }
+    void clonerandom(RandomListNode* pHead)
+    {
+         RandomListNode*node=pHead;
+        while(node)
+        {
+            RandomListNode*clond=node->next;
+            if(node->random!=nullptr)
+            {
+                clond->random=node->random->next;
+            }
+            node=clond->next;
+
+        }
+    }
+    RandomListNode*clone2(RandomListNode* pHead)
+    {
+        RandomListNode*node=pHead;
+        RandomListNode*cloudhead=nullptr;
+        RandomListNode*cloudnode=nullptr;
+        if(node!=nullptr)
+        {
+            cloudhead=cloudnode=node->next;
+            node->next=cloudnode->next;
+            node=node->next;
+        }
+        while(node!=nullptr)
+        {
+            cloudnode->next=node->next;
+            cloudnode=cloudnode->next;
+            node->next=cloudnode->next;
+            node=node->next;
+        }
+        return cloudhead;
+    }
+};
