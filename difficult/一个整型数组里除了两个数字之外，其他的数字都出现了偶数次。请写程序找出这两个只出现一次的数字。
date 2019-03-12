@@ -1,0 +1,39 @@
+class Solution {
+public:
+    void FindNumsAppearOnce(vector<int> data,int* num1,int *num2) {
+        if(data.size()<2)
+            return;
+        int result=0;
+        for (int i=0;i<data.size();++i)
+        {
+            result ^=data[i];//剩下两个唯一元素的数字的异或
+        }
+       unsigned int index1=b (result);//找到异或的最高位斌记录最高位数
+        * num1=* num2=0;
+        for (int j=0;j<data.size();++j)
+        {
+            if(c(data[j],index1))
+                * num1^=data[j];
+            else
+                * num2^=data[j];
+        }
+    }
+
+
+   unsigned int b (int num)
+    {
+        int indexdata=0;
+        while ((num & 1)==0))) 
+        {
+            indexdata++;
+            num=num >> 1;
+        }
+        return indexdata;
+    }
+    bool c (int num,unsigned int indexdata){num=num>>indexdata;
+        return ( num&1);}
+    
+
+                   
+                       
+};
