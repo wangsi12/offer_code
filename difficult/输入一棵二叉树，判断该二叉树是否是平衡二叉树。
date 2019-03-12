@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool IsBalanced_Solution(TreeNode* pRoot) {
+        if(pRoot==nullptr)
+        {
+            return true;//空树也是平衡二叉树
+        }
+        int left=TreeDepth(pRoot->left);
+        int right=TreeDepth(pRoot->right);
+        if(left-right>1||right-left>1)
+            return false;
+        return IsBalanced_Solution(pRoot->left)&&IsBalanced_Solution(pRoot->right);
+
+    }
+     int TreeDepth(TreeNode* pRoot)
+    {
+    if(pRoot==nullptr)
+        return 0;
+        int nleft=TreeDepth(pRoot->left);
+        int nright=TreeDepth(pRoot->right);
+        return (nleft>nright)?(nleft+1):(nright+1);
+    }
+};
