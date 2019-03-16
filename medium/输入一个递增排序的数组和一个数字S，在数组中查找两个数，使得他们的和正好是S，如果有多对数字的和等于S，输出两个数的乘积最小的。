@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+        vector<int>result;
+        if(array.empty())
+            return result;
+        int begin=0;
+        int end=array.size()-1;
+        while(begin<end)
+        {          
+            if((array[begin]+array[end])==sum)
+            {
+                result.push_back(array[begin]);
+                result.push_back(array[end]);
+                break;//注意一旦找到了要及时中断
+            }
+            else if((array[begin]+array[end])<sum)
+            {
+                begin++;
+            }
+            else
+                end--;
+        }
+        return result;
+        
+    }
+};
