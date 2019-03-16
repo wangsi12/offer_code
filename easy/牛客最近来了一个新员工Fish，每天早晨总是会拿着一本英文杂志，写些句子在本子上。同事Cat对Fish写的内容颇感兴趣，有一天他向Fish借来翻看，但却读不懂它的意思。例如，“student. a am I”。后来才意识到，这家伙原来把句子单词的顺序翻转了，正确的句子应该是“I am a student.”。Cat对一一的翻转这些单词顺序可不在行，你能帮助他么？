@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string ReverseSentence(string str) {
+        if (str.size()==0)
+            return "";
+        auto size=str.size();
+        int mark=0;
+        str += ' ';//确保最后一位也能被反转
+        for(int i = 0; i < size+1; ++i){
+            if(str[i] == ' '){
+                str=reverse(str, mark, i-1);
+                mark = i+1;//这是每个单词的开始
+            }
+        }
+        str = str.substr(0, size);
+        string result=reverse(str, 0, size-1);
+        return result;
+        
+    }
+    string reverse(string str ,int begin,int end)
+    {
+        while(begin<end)
+        {
+            swap(str[begin],str[end]);
+            ++begin;
+            --end;
+        }
+        return str;
+    }
+};
