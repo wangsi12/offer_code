@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<vector<int> > FindContinuousSequence(int sum) {
+        vector<int> result1;
+        vector<vector<int> > result2;
+        if (sum<3)
+            return result2 ;
+        int n=sqrt(2*sum);
+        for(int i=n;i>=2;i--)
+        {
+            if(((i&1)==1)&&(sum%i==0))//证明能找到平均值
+            {
+                int  mid=sum/i;
+                for(int j=0;j<i;j++)
+                {
+                    result1.push_back(mid-i/2+j);
+                }
+            }
+            else if(((i&1)==0)&&(sum%i)*2==i)
+            {
+                int mid=sum/i;
+                for(int j=0;j<i;j++)
+                {
+                    result1.push_back(mid-i/2+j+1);
+                }
+            }
+           if(!result1.empty())
+            {
+                result2.push_back(result1);
+            }
+            result1.clear();
+        
+        }
+     
+            return result2;
+        
+    }
+};
