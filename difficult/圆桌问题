@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int LastRemaining_Solution(int n, int m)
+    {
+        if(n<1||m<1)
+            return -1;
+        int last=0;
+        for(int i=2;i<=n;++i)//从小的映射到大的，到n时候计算的结果就是应该有的
+        {
+            last=(last+m)%i;
+         
+        }
+        return last;
+    }
+};
