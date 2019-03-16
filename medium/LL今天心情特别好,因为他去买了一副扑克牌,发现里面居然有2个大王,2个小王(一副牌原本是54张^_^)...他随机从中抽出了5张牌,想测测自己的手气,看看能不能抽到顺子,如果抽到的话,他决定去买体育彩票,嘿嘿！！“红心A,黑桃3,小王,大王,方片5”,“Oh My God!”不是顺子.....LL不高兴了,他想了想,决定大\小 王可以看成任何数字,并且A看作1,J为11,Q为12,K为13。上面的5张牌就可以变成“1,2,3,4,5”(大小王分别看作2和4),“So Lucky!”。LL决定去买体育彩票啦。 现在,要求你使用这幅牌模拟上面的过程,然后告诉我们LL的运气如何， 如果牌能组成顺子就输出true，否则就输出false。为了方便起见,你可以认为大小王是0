@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool IsContinuous( vector<int> numbers ) {
+        if(numbers.empty())
+        {
+            return false;
+        }
+        sort(numbers.begin(),numbers.end());
+        int sizes=numbers.size();
+        int num=0;
+        int num0=0;
+        for(int i=0;i<sizes;i++)
+        {
+            if(numbers[i]==0)
+                num0++;
+        }
+        for(int j=num0+1;j<sizes;j++)
+        {
+           if(numbers[j]==numbers[j-1])
+                {
+                    return false;
+                }
+                num=num+numbers[j]-numbers[j-1]-1;
+        }
+        if(num0>=num)
+            return true;
+        else
+            return false;
+    }
+};
